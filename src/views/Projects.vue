@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import db from '@/fb'
+import db from '../fb'
 
   export default {
     name: 'Projects',
@@ -41,18 +41,21 @@ import db from '@/fb'
       }
     },
      created(){
-      db.collection('projects').onSnapshot(res => {
-        const changes = res.docChanges();
+      // db.collection('projects').onSnapshot(res => {
+      //   const changes = res.docChanges();
 
-        changes.array.forEach(change => {
-          if(change.type === 'added'){
-            this.projects.push({
-              ...change.doc.data(),
-              id: change.doc.id
-            })
-          }
-        });
-      })
+      //   changes.array.forEach(change => {
+      //     if(change.type === 'added'){
+      //       this.projects.push({
+      //         ...change.doc.data(),
+      //         id: change.doc.id
+      //       })
+      //     }
+      //   });
+      // })
+    },
+    firestore: {
+      projects: db.collection('projects'),
     }
   }
 </script>

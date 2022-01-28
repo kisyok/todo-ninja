@@ -10,8 +10,10 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "date-fns": "^2.28.0",
+    "firebase": "^9.6.4",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vuefire": "^2.2.5",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {

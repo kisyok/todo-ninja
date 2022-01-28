@@ -18,17 +18,19 @@
 </template>
 
 <script>
+import db from '@/fb'
 
   export default {
     name: 'Projects',
     data() {
       return {
-        projects: [
-          {title: 'Web Programming', person: 'Kisyok', due: '21/2/2022', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'},
-          {title: 'Database', person: 'Haqim', due: '12/2/2022', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'},
-          {title: 'SQL', person: 'Gujjar', due: '01/4/2021', status: 'completed', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'},
-          {title: 'Backend', person: 'Aisyah', due: '16/6/2021', status: 'overdue', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'}
-        ]
+        // projects: [
+        //   {title: 'Web Programming', person: 'Kisyok', due: '21/2/2022', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'},
+        //   {title: 'Database', person: 'Haqim', due: '12/2/2022', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'},
+        //   {title: 'SQL', person: 'Gujjar', due: '01/4/2021', status: 'completed', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'},
+        //   {title: 'Backend', person: 'Aisyah', due: '16/6/2021', status: 'overdue', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, optio at perferendis, explicabo nesciunt, eveniet beatae quae quos quaerat facere repellendus. Sint sit adipisci nemo, totam necessitatibus ipsa deleniti rem?'}
+        // ]
+        projects: []
       }
     },
     computed: {
@@ -37,6 +39,20 @@
           return project.person === 'Kisyok'
         })
       }
+    },
+     created(){
+      db.collection('projects').onSnapshot(res => {
+        const changes = res.docChanges();
+
+        changes.array.forEach(change => {
+          if(change.type === 'added'){
+            this.projects.push({
+              ...change.doc.data(),
+              id: change.doc.id
+            })
+          }
+        });
+      })
     }
   }
 </script>

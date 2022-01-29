@@ -71,6 +71,7 @@ export default {
                 {icon: 'mdi-account-box', text: 'Dashboard', route: '/'},
                 {icon: 'mdi-folder', text: 'My Projects', route: '/projects'},
                 {icon: 'mdi-account-group', text: 'Team', route: '/team'},
+                {icon: 'mdi-calendar', text: 'Calendar', route: '/calendar'},
             ],
             snackbar: false
         }

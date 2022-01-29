@@ -205,8 +205,12 @@ export default {
             dialog: false
         }
     },
-    firestore: {
-      events: db.collection('calEvent'),
+    // can use either mounted/created with getEvents() or firestore property
+    // firestore: {
+    //   events: db.collection('calEvent'),
+    // },
+    mounted(){
+      this.getEvents();
     },
     methods: {
         viewDay ({ date }) {
@@ -256,14 +260,15 @@ export default {
             const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
             const second = new Date(first.getTime() + secondTimestamp)
 
-            events.push({
+              events.push({
                 name: this.names[this.rnd(0, this.names.length - 1)],
                 start: first,
                 end: second,
                 color: this.colors[this.rnd(0, this.colors.length - 1)],
                 timed: !allDay,
-            })
+              })
             }
+            
 
             this.events = events
         },

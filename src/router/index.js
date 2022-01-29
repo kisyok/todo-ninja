@@ -4,6 +4,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Projects from '../views/Projects.vue'
 import Team from '../views/Team.vue'
 import Calendar from '../views/Calendar.vue'
+import Email from '../views/Email.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/calendar',
     name: 'Calendar',
     component: Calendar,
+  },
+  {
+    path: '/email',
+    name: 'Email',
+    component: Email,
   }
 ]
 

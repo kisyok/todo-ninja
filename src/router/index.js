@@ -5,6 +5,7 @@ import Projects from '../views/Projects.vue'
 import Team from '../views/Team.vue'
 import Calendar from '../views/Calendar.vue'
 import Email from '../views/Email.vue'
+import TextEditor from '../views/TextEditor.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/email',
     name: 'Email',
     component: Email,
+  },
+  {
+    path: '/text-editor',
+    name: 'TextEditor',
+    component: TextEditor,
   }
 ]
 
